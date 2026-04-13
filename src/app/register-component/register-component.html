@@ -1,0 +1,52 @@
+<div class="auth-wrapper">
+  <div class="auth-card">
+    
+    <!-- Left Illustration -->
+    <div class="image-section">
+      <img src="login-image.jpg" alt="Register" />
+    </div>
+
+    <!-- Right Form -->
+    <div class="form-section">
+      <h2>Create Account</h2>
+      <p class="subtitle">Start tracking your expenses.</p>
+
+      <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+
+        <!-- Username -->
+        <label>Username</label>
+        <input type="text" formControlName="username" placeholder="Enter username" />
+        <div *ngIf="submitted && registerForm.controls['username'].errors" class="error">
+          Username is required.
+        </div>
+
+        <!-- Email -->
+        <label>Email</label>
+        <input type="email" formControlName="email" placeholder="Enter email" />
+        <div *ngIf="submitted && registerForm.controls['email'].errors" class="error">
+          Enter a valid email.
+        </div>
+
+        <!-- Password -->
+        <label>Password</label>
+        <input type="password" formControlName="password" placeholder="Create password" />
+        <div *ngIf="submitted && registerForm.controls['password'].errors" class="error">
+          Password must be at least 6 characters.
+        </div>
+
+        <button type="submit" class="primary-btn">
+          Create Account
+        </button>
+
+        <button type="button" class="secondary-btn" routerLink="/login">
+          Already have an account? Sign In
+        </button>
+
+        <div *ngIf="message" class="success">{{ message }}</div>
+        <div *ngIf="error" class="error">{{ error }}</div>
+
+      </form>
+    </div>
+  </div>
+</div>
+``

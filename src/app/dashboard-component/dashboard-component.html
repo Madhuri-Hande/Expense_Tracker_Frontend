@@ -1,0 +1,80 @@
+<div class="dashboard-page">
+
+  <!-- Top Bar -->
+  <header class="topbar">
+    <h1>Expense Tracker</h1>
+
+    <div class="user-area">
+      <span>Hello, {{ username }}</span>
+      <div class="avatar">{{ getInitial() }}</div>
+    </div>
+  </header>
+
+  <!-- Stats Section -->
+  <section class="stats-row">
+    <div class="stat-card highlight">
+      <div>
+        <h4>Total Expenses</h4>
+        <h2>₹{{ totalExpenses }}</h2>
+        <small>This Month</small>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div>
+        <h4>Transactions</h4>
+        <h2>{{ filteredExpenses.length }}</h2>
+        <small>{{ totalExpenses }} / goal spent</small>
+      </div>
+    </div>
+  </section>
+
+  <!-- Controls -->
+  <section class="controls-bar">
+    <div class="filter">
+      <label>Category</label>
+      <select [(ngModel)]="selectedCategory" (change)="filterExpenses()">
+        <option value="">All</option>
+        <option *ngFor="let cat of category" [value]="cat.expenseType">
+          {{ cat.expenseType }}
+        </option>
+      </select>
+    </div>
+
+    <button class="primary-btn" (click)="onClickExpense()">
+      + Create Expense
+    </button>
+  </section>
+
+  <!-- Expense List -->
+  <section class="expense-list">
+    <h3>Your Expenses</h3>
+
+    <div *ngIf="filteredExpenses.length; else empty">
+      <div class="expense-item" *ngFor="let expense of filteredExpenses">
+        <div class="left">
+          <div class="icon-box">🍽</div>
+          <div>
+            <strong>{{ expense.category }}</strong>
+            <p>{{ expense.description }}</p>
+          </div>
+        </div>
+
+        <div class="right">
+          <span class="date">
+            {{ expense.createdDate | date:'mediumDate' }}
+          </span>
+          <span class="amount">₹{{ expense.amount }}</span>
+
+          <button class="icon-btn" (click)="onClickEdit()">✏️</button>
+          <button class="icon-btn danger" (click)="onClickDelete()">🗑</button>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #empty>
+      <p class="empty">No expenses available.</p>
+    </ng-template>
+  </section>
+
+</div>

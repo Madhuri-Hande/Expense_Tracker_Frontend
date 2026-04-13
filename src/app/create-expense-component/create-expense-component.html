@@ -1,0 +1,65 @@
+<div class="expense-page">
+
+  <div class="expense-card">
+    <h2>Create Expense</h2>
+    <p class="subtitle">Add a new expense to track your spending</p>
+
+    <form [formGroup]="expenseForm" (ngSubmit)="onSubmit()">
+
+      <!-- Category -->
+      <div class="form-group">
+        <label>Category</label>
+        <select formControlName="expenseCategoryId">
+          <option value="" disabled selected>Select a category</option>
+          <option
+            *ngFor="let category of category"
+            [value]="category.expenseCategoryId"
+          >
+            {{ category.expenseType }}
+          </option>
+        </select>
+      </div>
+
+      <!-- Amount -->
+      <div class="form-group">
+        <label>Amount</label>
+        <input
+          type="number"
+          formControlName="amount"
+          placeholder="Enter amount"
+        />
+      </div>
+
+      <!-- Description -->
+      <div class="form-group">
+        <label>Description</label>
+        <textarea
+          rows="4"
+          formControlName="description"
+          placeholder="Enter expense description"
+        ></textarea>
+      </div>
+
+      <!-- Buttons -->
+      <div class="button-row">
+        <button
+          type="submit"
+          class="primary-btn"
+          [disabled]="expenseForm.invalid"
+        >
+          Submit Expense
+        </button>
+
+        <button
+          type="button"
+          class="secondary-btn"
+          (click)="goToDashboard()"
+        >
+          Back to Dashboard
+        </button>
+      </div>
+
+    </form>
+  </div>
+
+</div>
