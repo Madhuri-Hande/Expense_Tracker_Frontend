@@ -23,9 +23,9 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
-            "outputPath": "dist/expense-tracker-frontend/browser",
+            "outputPath": "dist/expense-tracker-frontend",
             "index": "src/index.html",
-            "browser": "src/main.ts",
+            "browser": "",
 
             "polyfills": [
               "zone.js"
