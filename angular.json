@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
-            "outputPath": "dist/expense-tracker-frontend",
+            "outputPath": "dist/expense-tracker-frontend/browser",
             "index": "src/index.html",
             "browser": "src/main.ts",
 
